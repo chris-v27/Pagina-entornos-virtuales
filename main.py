@@ -13,10 +13,19 @@ facts_list = ["La mayoría de las personas que sufren adicción tecnológica exp
 
 @app.route("/")
 def hello_world():
-    return '<h1>Esta página da datos interesantes sobre las dependencias tecnológicas</h1><a href="/random_fact">¡Ver un dato aleatorio!</a>'
+    return '<h1>Esta página da datos interesantes sobre las dependencias tecnológicas</h1> <a href="/random_fact">¡Ver un dato aleatorio!</a> <a href="/flip_coin">Lanzamiento de moneda</a>'
     
 @app.route("/random_fact")
-def rutaMia():
-    return f'<p>{random.choice(facts_list)}</p>''<a href="/">Regresar a la pagina principal</a>'
+def datos():
+    return f'<p>{random.choice(facts_list)}</p> <a href="/">Regresar a la pagina principal</a>'
+
+@app.route("/flip_coin")
+def flip_coin():
+    side = random.randint(1,2)
+    if side == 1:
+        side = 'Cara'
+    elif side == 2: 
+        side = 'Cruz'
+    return f'<p>{side}</p> <a href="/">Regresar a la pagina principal</a>'
 
 app.run(debug=True)
